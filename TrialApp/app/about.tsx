@@ -1,21 +1,16 @@
 import { Text, View, StyleSheet, TextInput, ActivityIndicator } from "react-native";
 import { Image } from "expo-image";
-import { Link } from "expo-router";
 
 
-export default function Index() {
+export default function About() {
   return (
     <View style={styles.container}>
-      <Text>Hello World</Text>
       <Image 
         source={{
           uri: "https://www.shutterstock.com/image-vector/hand-drawn-cartoon-malatang-illustration-260nw-2132309287.jpg",
         }}
         style={styles.image}
       />
-        <TextInput placeholder="Email"/>
-        <ActivityIndicator size={"large"}/>
-        <Link href={"/about"}>About Page</Link>
     </View>
   );
 }
