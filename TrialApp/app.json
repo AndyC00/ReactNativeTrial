@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "TrialApp",
+    "name": "Andy's Native Trial",
     "slug": "TrialApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/myIcon/icon1.png",
     "scheme": "trialapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,

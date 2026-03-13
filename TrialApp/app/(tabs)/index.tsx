@@ -1,9 +1,12 @@
-import { Text, View, StyleSheet, TextInput, ActivityIndicator, Button } from "react-native";
+import { Text, View, StyleSheet, TextInput, ActivityIndicator } from "react-native";
 import { Image } from "expo-image";
 import { Link, useRouter } from "expo-router";
+import { Button } from "@expo/ui/swift-ui";
 
 
 export default function Index() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <Text>Hello World</Text>
@@ -16,12 +19,13 @@ export default function Index() {
       <TextInput placeholder="Email" />
       <ActivityIndicator size={"large"} />
       <Link href={"/about"}>About Page</Link>
-      <Button title="Navigate" onPress={() => router.push("/about")}></Button>
+      <Button onPress={() => router.push("/about")}>
+        <Text>Navigate</Text>
+      </Button>
     </View>
   );
 }
 
-const router = useRouter();
 
 // styles
 const styles = StyleSheet.create({
