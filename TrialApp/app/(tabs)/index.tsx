@@ -1,7 +1,15 @@
-import { Text, View, StyleSheet, TextInput, ActivityIndicator } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  ActivityIndicator,
+  Platform,
+  Pressable,
+} from "react-native";
 import { Image } from "expo-image";
 import { Link, useRouter } from "expo-router";
-import { Button } from "@expo/ui/swift-ui";
+import { Button as AndroidComposeButton } from "@expo/ui/jetpack-compose";
 
 
 export default function Index() {
@@ -19,9 +27,21 @@ export default function Index() {
       <TextInput placeholder="Email" />
       <ActivityIndicator size={"large"} />
       <Link href={"/about"}>About Page</Link>
-      <Button onPress={() => router.push("/about")}>
-        <Text>Navigate</Text>
-      </Button>
+      {Platform.OS === "android" ? (
+        <AndroidComposeButton onPress={() => router.push("/about")} variant="elevated">
+          Navigate
+        </AndroidComposeButton>
+      ) : (
+        <Pressable
+          onPress={() => router.push("/about")}
+          style={({ pressed }) => [
+            styles.fallbackButton,
+            pressed && styles.fallbackButtonPressed,
+          ]}
+        >
+          <Text style={styles.fallbackButtonText}>Navigate</Text>
+        </Pressable>
+      )}
     </View>
   );
 }
@@ -37,6 +57,20 @@ const styles = StyleSheet.create({
 
   image: {
     width: 200,
-    height: 190
-  }
+    height: 190,
+  },
+  fallbackButton: {
+    marginTop: 12,
+    backgroundColor: "#0A7EA4",
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 8,
+  },
+  fallbackButtonPressed: {
+    opacity: 0.8,
+  },
+  fallbackButtonText: {
+    color: "#FFFFFF",
+    fontWeight: "600",
+  },
 });
